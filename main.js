@@ -1,6 +1,7 @@
 'use strict';
 
 const { app, BrowserWindow } = require('electron');
+require('electron-reload')(__dirname);
 
 let win;
 
@@ -19,7 +20,7 @@ function createWindow() {
 
   win.loadURL(`file://${__dirname}/index.html`);
   // Descomente a linha abaixo para abrir o DevTools
-  win.webContents.openDevTools();
+  // win.webContents.openDevTools();
 
   // Evento ocorrido ao fechar a tela
   win.on('closed', function() {
@@ -27,6 +28,7 @@ function createWindow() {
   });
 }
 
+app.allowRendererProcessReuse = true;
 app.whenReady().then(createWindow)
 
 // // Cria a tela na inicialização do electron

@@ -8,20 +8,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="./src/assets/css/main.css">
 
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
 
-  <link rel="import" href="src/app/components/home/home.view.html">
-  <link rel="import" href="src/app/components/red/red.view.html">
-
   <script src="src/app.js"></script>
   <script src="src/app/components/home/home.component.js"></script>
 </head>
+
 <body ng-app="automation">
   
-  <home></home>
+  <home class="align-middle"></home>
 
   <script>
     require('./src/app.config').modules() 
