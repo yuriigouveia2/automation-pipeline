@@ -1,3 +1,5 @@
+'use strict';
+
 const { app, BrowserWindow } = require('electron');
 
 let win;
@@ -8,15 +10,16 @@ function createWindow() {
     width: 600,
     height: 600,
     backgroundColor: '#ffff',
-    icon: `file://${__dirname}/dist/assets/logo.png`,
+    //icon: `file://${__dirname}/dist/assets/logo.png`,
     webPreferences: {
-      nodeIntegration: true
+      nodeIntegration: true,
+      allowEval: false
     }
   });
 
-  win.loadURL(`file://${__dirname}/dist/index.html`);
-  //// Descomente a linha abaixo para abrir o DevTools
-  // win.webContents.openDevTools();
+  win.loadURL(`file://${__dirname}/index.html`);
+  // Descomente a linha abaixo para abrir o DevTools
+  win.webContents.openDevTools();
 
   // Evento ocorrido ao fechar a tela
   win.on('closed', function() {
@@ -45,3 +48,8 @@ app.on('activate', function() {
 });
 
 
+
+// const shell = require('shelljs');
+// const out = shell.exec('docker container ls', { silent: true, async: false });
+
+// shell.echo(out);
