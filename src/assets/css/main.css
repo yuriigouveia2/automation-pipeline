@@ -1,5 +1,9 @@
+@import "__variables.css";
+@import "__animations.css";
+
 html, body {
     height: 100%;
+    background-color: var(--primary-color);
 }
 
 a.text-decoration-none {
@@ -8,17 +12,22 @@ a.text-decoration-none {
 
 a .card,
 a .card:hover {
-    color: black !important;
+    color: var(--secondary-color) !important;
     text-decoration: none;
 }
 
+.scale-down-center {
+	-webkit-animation: scale-down-center 0.7s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	        animation: scale-down-center 0.7s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+
 .card {
-    width: 25rem;
+    width: var(--card-width);
     border-radius: 2.25rem !important;
 }
 
 .card:hover {
-    background-color: rgb(251, 251, 251) !important;
+    background-color: var(--card-bg-color-hover) !important;
 }
 
 .card.row.h-100.justify-content-center.align-items-center {
@@ -26,7 +35,7 @@ a .card:hover {
 }
 
 .menu-opts {
-    font-size: 50px;
+    font-size: var(--menu-font-size);
     display: flex;
     justify-content: center;
 }

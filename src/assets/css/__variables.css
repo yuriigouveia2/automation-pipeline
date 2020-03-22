@@ -1,0 +1,7 @@
+:root {
+    --primary-color: #FFFFFF;
+    --secondary-color: #000000;
+    --card-bg-color-hover: rgb(251, 251, 251);
+    --card-width: 25rem;
+    --menu-font-size: 50px;
+}
