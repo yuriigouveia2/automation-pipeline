@@ -3,5 +3,8 @@
     --secondary-color: #000000;
     --card-bg-color-hover: rgb(251, 251, 251);
     --card-width: 25rem;
+    --card-sidebar-radius: 0.25rem;
+    --card-sidebar-width: 50px;
+    --card-sidebar-height: 50px;
     --menu-font-size: 50px;
 }

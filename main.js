@@ -11,7 +11,7 @@ function createWindow() {
     width: 600,
     height: 600,
     backgroundColor: '#ffff',
-    //icon: `file://${__dirname}/dist/assets/logo.png`,
+    icon: `file://${__dirname}/src/assets/img/logo.png`,
     webPreferences: {
       nodeIntegration: true,
       allowEval: false

@@ -21,6 +21,11 @@ a .card:hover {
 	        animation: scale-down-center 0.7s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 }
 
+.scale-up-center {
+	-webkit-animation: scale-up-center 0.7s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	        animation: scale-up-center 0.7s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+
 .card {
     width: var(--card-width);
     border-radius: 2.25rem !important;
@@ -38,4 +43,33 @@ a .card:hover {
     font-size: var(--menu-font-size);
     display: flex;
     justify-content: center;
+}
+
+.sidebar {
+    visibility: visible;
+}
+
+.sidebar.hidden, .hidden {
+    visibility: hidden;
+}
+
+.small {
+    display: none;
+}
+
+.wrapper {
+    width: 200px;
+    height: 0;
+}
+
+.wrapper .card {
+    width: var(--card-sidebar-width) !important;
+    height: var(--card-sidebar-height) !important;
+    border-radius: var(--card-sidebar-radius) !important;
+    margin: 5px;
+}
+
+ul {
+    list-style-type: none;
+    padding-inline-start: 0;
 }

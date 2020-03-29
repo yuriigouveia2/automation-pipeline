@@ -5,11 +5,20 @@ angular.
   component('home', {  
       templateUrl: `${__dirname}/src/app/components/home/home.view.html`,
         controller: function HomeController() {
-            this.path = path.join(process.cwd(), '/src/assets/img/logo.png');
+            this.terminalIcon = path.join(process.cwd(), '/src/assets/icons/terminal-48.png');
 
             this.eventClick = function() {
               const element = document.getElementById('card-processos');
               element.classList.add('scale-down-center');
+
+              setTimeout(() => {
+                const processosElement = document.getElementById('processos');
+                const sidebarElement = document.getElementById('sidebar');
+
+                processosElement.classList.add('small');
+                sidebarElement.classList.add('scale-up-center');
+                sidebarElement.classList.remove('small');
+              }, 750);
             }
     },
 });
