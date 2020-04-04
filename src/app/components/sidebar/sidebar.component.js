@@ -2,7 +2,7 @@ angular.
   module('automation').
   component('sidebar', {  
       templateUrl: `${__dirname}/src/app/components/sidebar/sidebar.view.html`,
-        controller: function HomeController() {
+      controller: function HomeController() {
             this.homeIcon = path.join(process.cwd(), '/src/assets/icons/home-40.png');
             this.terminalIcon = path.join(process.cwd(), '/src/assets/icons/terminal-48.png');
 
@@ -23,5 +23,5 @@ angular.
               }, 750);
               
             }
-    },
+      },
 });
