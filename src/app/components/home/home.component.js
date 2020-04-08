@@ -14,10 +14,14 @@ angular.
               setTimeout(() => {
                 const processosElement = document.getElementById('processos');
                 const sidebarElement = document.getElementById('sidebar');
+                const processoElement = document.getElementById('processo-content');
 
                 processosElement.classList.add('small');
                 sidebarElement.classList.add('scale-up-center');
                 sidebarElement.classList.remove('small');
+
+                processoElement.classList.remove('small');
+                processoElement.classList.add('scale-up-center');
               }, 750);
             }
     },

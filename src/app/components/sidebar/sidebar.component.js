@@ -21,7 +21,6 @@ angular.
                 element.classList.add('scale-up-center');       
                 sidebarElement.classList.add('small');
               }, 750);
-              
             }
       },
 });

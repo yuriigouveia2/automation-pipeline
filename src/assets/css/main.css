@@ -73,3 +73,16 @@ ul {
     list-style-type: none;
     padding-inline-start: 0;
 }
+
+.max-height {
+    height: 100vh;
+}
+
+.app-content {
+    margin-left: 80px;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+}
