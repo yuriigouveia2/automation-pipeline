@@ -79,10 +79,50 @@ ul {
 }
 
 .app-content {
-    margin-left: 80px;
     height: 100%;
     width: 100%;
     position: absolute;
     display: flex;
     justify-content: center;
+    align-items: center;
+}
+
+.single-line {
+    width: 100%;
+    display: flex;
+}
+
+.single-line > div   {
+    padding: 0;
+}
+
+input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
+input[type=number] {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #000000;
+}
+
+.btn-custom {
+	background-color:#b0b0b0;
+	border-radius:40px;
+	border:11px solid #cccccc;
+	display:inline-block;
+	cursor:pointer;
+	color:#4a4a4a;
+	font-family:Arial;
+	font-size:12px;
+	padding:7px 6px;
+	text-decoration:none;
+	text-shadow:0px 0px 0px #000000;
+}
+
+.btn-custom:active {
+	position:relative;
+    top:1px;
+    background-color:#c0c0c0;
+    outline: none;
 }

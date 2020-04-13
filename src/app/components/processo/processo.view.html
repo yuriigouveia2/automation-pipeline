@@ -1,3 +1,18 @@
 <div>
-    processo works!
+    <div class="col-12">
+        <label>Procurando por algum processo do sistema?</label>
+    </div>
+    <form name="processoData" action="#" ng-controller="ProcessoCtrl" ng-submit="submit()">
+        <div class="col-12 single-line">
+            <div class="col-5">
+                <label>Busque pela porta</label>
+            </div>
+            <div class="col-3" style="max-width: fit-content;">
+                <input type="number">
+            </div>
+            <div class="col-2 ml-1">
+                <button type="submit" class="btn-custom">GO!</button>
+            </div>
+        </div>
+    </form>
 </div>
