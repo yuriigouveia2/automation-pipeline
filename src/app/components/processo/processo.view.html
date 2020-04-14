@@ -1,20 +1,54 @@
-<div>
-    <div class="col-12">
-        <label>Procurando por algum processo do sistema?</label>
-    </div>
+<div ng-controller="processoCtrl">
     <form name="processoData">
+        <div class="col-12">
+            <label>Procurando por algum processo do sistema?</label>
+        </div>
         <div class="col-12 single-line">
             <div class="col-5">
                 <label>Busque pela porta</label>
             </div>
             <div class="col-3" style="max-width: fit-content;">
-                <input type="number" ng-model="$ctrl.porta">
+                <input type="number" ng-model="porta">
             </div>
             <div class="col-2">
-                <button type="button" ng-click="$ctrl.procuraProcesso()">
-                    <img src={{$ctrl.lupaIcon}} class="btn-icon">
+                <button type="button" ng-click="procuraProcesso()">
+                    <img src={{lupaIcon}} class="btn-icon">
                 </button>
             </div>
         </div>
     </form>
+
+    <div class="col-12" ng-if="processos.length > 0">
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th class="col">PROTOCOLO</th>
+                        <th class="col">ENDEREÇO LOCAL</th>
+                        <th class="col">ENDEREÇO EXTERNO</th>
+                        <th class="col">ESTADO</th>
+                        <th class="col">PID</th>
+                        <th class="col">AÇÕES</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="item in processos">
+                        <td>{{item.protocolo}}</td>
+                        <td>{{item.enderecoLocal}}</td>
+                        <td>{{item.enderecoExterno}}</td>
+                        <td>{{item.estado}}</td>
+                        <td>{{item.pid}}</td>
+                        <td>
+                            <button type="button" class="btn btn-danger">
+                                <i class="fa fa-trash"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    <!-- <tr ng-if="processos.length == 0">
+                        <td colspan="5">Nenhum item encontrado.</td>
+                    </tr> -->
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
