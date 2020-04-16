@@ -15,17 +15,34 @@ angular.
       $scope.procuraProcesso = function() {
         let lista = [];
         if ($scope.porta) {
-          shell.exec(`netstat -ano | findStr :${$scope.porta} | findStr "LISTENING"`, {silent: true},(err, data) => {
-            if (err) {
-              console.log(err);
-              return;
-            }
+          shell.exec(`netstat -ano | findStr :${$scope.porta} | findStr "LISTENING"`, {silent: true},
+            (err, data) => {
+              if (err) {
+                console.log(err);
+                return;
+              }
 
-            lista = [...getProcessosData(data.trim(), $scope.porta)];
-            $scope.processos = lista;
-            $scope.$apply();
-          });
+              lista = [...getProcessosData(data.trim(), $scope.porta)];
+              $scope.processos = lista;
+              $scope.$apply();
+            });
         } 
+      }
+
+      $scope.finalizarProcesso = function(processo) {
+        if (processo.pid) { 
+          shell.exec(`taskkill /f /pid ${processo.pid}`, {silent:true}, 
+            (err, data) => {
+              if (err) {
+                console.log(err);
+                return;
+              }
+              let processos = $scope.processos;
+              $scope.processos = [...processos.filter(x => x.pid !== processo.pid)];
+
+              $scope.$apply();
+            });
+        }
       }
   });
 

@@ -57,6 +57,10 @@ a .card:hover {
     display: none;
 }
 
+nav.wrapper {
+    width: fit-content;
+}
+
 .wrapper {
     width: 200px;
     height: 0;
@@ -84,12 +88,14 @@ ul {
     position: absolute;
     display: flex;
     justify-content: center;
-    align-items: center;
+    margin-left: 60px;
+    transform: translateX(-60px);
 }
 
 .single-line {
-    width: 100%;
+    width: fit-content;
     display: flex;
+    margin: 0 auto;
 }
 
 .single-line > div   {
@@ -99,12 +105,6 @@ ul {
 input[type=number]::-webkit-inner-spin-button {
     -webkit-appearance: none;
 }
-
-/* input[type=number] {
-    background: transparent;
-    border: none;
-    border-bottom: 1px solid #000000;
-} */
 
 .btn-custom {
 	background-color:#b0b0b0;
@@ -131,4 +131,13 @@ input[type=number]::-webkit-inner-spin-button {
     width: 20px;
     margin: 0;
     padding: 0;
+}
+
+.fit {
+    width: fit-content;
+    margin: 0;
+}
+
+form {
+    margin-bottom: 1em;
 }

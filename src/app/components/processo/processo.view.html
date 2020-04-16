@@ -1,6 +1,6 @@
 <div ng-controller="processoCtrl">
     <form name="processoData">
-        <div class="col-12">
+        <div class="col-12 text-center">
             <label>Procurando por algum processo do sistema?</label>
         </div>
         <div class="col-12 single-line">
@@ -18,7 +18,7 @@
         </div>
     </form>
 
-    <div class="col-12" ng-if="processos.length > 0">
+    <div class="col-12 justify-content-center align-items-center" ng-if="processos.length > 0">
         <div class="table-responsive">
             <table class="table">
                 <thead>
@@ -39,7 +39,7 @@
                         <td>{{item.estado}}</td>
                         <td>{{item.pid}}</td>
                         <td>
-                            <button type="button" class="btn btn-danger">
+                            <button type="button" ng-click="finalizarProcesso(item)" class="btn btn-danger">
                                 <i class="fa fa-trash"></i>
                             </button>
                         </td>
