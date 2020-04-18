@@ -8,8 +8,10 @@ let win;
 function createWindow() {
   // Cria a tela do browser
   win = new BrowserWindow({
-    width: 600,
-    height: 600,
+    'minHeight': 600,
+    'minWidth': 600,
+    // width: 600,
+    // height: 600,
     backgroundColor: '#ffff',
     icon: `file://${__dirname}/src/assets/img/logo.png`,
     webPreferences: {
@@ -18,6 +20,7 @@ function createWindow() {
     }
   });
 
+  win.maximize();
   win.loadURL(`file://${__dirname}/index.html`);
   // Descomente a linha abaixo para abrir o DevTools
   // win.webContents.openDevTools();

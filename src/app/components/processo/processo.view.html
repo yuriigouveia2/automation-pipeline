@@ -18,10 +18,10 @@
         </div>
     </form>
 
-    <div class="col-12 justify-content-center align-items-center" ng-if="processos.length > 0">
+    <div class="col-12 justify-content-center align-items-center">
         <div class="table-responsive">
-            <table class="table">
-                <thead>
+            <table class="table table-bordered">
+                <thead class="thead-light">
                     <tr>
                         <th class="col">PROTOCOLO</th>
                         <th class="col">ENDEREÇO LOCAL</th>
@@ -32,7 +32,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="item in processos">
+                    <tr ng-repeat="item in processos" ng-if="processos.length > 0">
                         <td>{{item.protocolo}}</td>
                         <td>{{item.enderecoLocal}}</td>
                         <td>{{item.enderecoExterno}}</td>
@@ -44,9 +44,9 @@
                             </button>
                         </td>
                     </tr>
-                    <!-- <tr ng-if="processos.length == 0">
-                        <td colspan="5">Nenhum item encontrado.</td>
-                    </tr> -->
+                    <tr ng-if="processos.length == 0">
+                        <td class="text-center" colspan="6">Nenhum item encontrado.</td>
+                    </tr>
                 </tbody>
             </table>
         </div>

@@ -84,12 +84,18 @@ ul {
 
 .app-content {
     height: 50vh;
-    width: 100%;
+    width: 95%;
     position: absolute;
     display: flex;
     justify-content: center;
     margin-left: 60px;
-    transform: translateX(-60px);
+}
+
+@media only screen and  (min-width: 851px) {
+    .app-content {
+        margin-left: 120px;
+        transform: translateX(-60px);
+    }
 }
 
 .single-line {
