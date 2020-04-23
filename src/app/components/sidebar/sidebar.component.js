@@ -15,6 +15,8 @@ angular.
               sidebarElement.classList.remove('scale-up-center');
               sidebarElement.classList.add('scale-down-center');
 
+              hideComponent();
+
               setTimeout(() => {
                 const processosElement = document.getElementById('processos');                
                 processosElement.classList.remove('small');
@@ -24,3 +26,13 @@ angular.
             }
       },
 });
+hideComponent = function() {
+  const element = document.getElementsByClassName('scale-up-center');
+  
+  if(element['processo-content']) {
+    const processosElement = element['processo-content'];
+    processosElement.classList.remove('scale-up-center');
+    processosElement.classList.add('scale-down-center', 'small');
+  }
+
+}

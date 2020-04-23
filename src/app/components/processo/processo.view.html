@@ -1,19 +1,13 @@
 <div ng-controller="processoCtrl">
     <form name="processoData">
-        <div class="col-12 text-center">
-            <label>Procurando por algum processo do sistema?</label>
-        </div>
-        <div class="col-12 single-line">
-            <div class="col-5">
-                <label>Busque pela porta</label>
-            </div>
-            <div class="col-3" style="max-width: fit-content;">
-                <input type="number" ng-model="porta">
-            </div>
-            <div class="col-2">
-                <button type="button" ng-click="procuraProcesso()">
+        <div class="col-12">
+            <div class="input-group mb-3">
+                <input type="number" class="form-control" placeholder="Porta" ng-model="porta">
+                <div class="input-group-append">
+                  <button type="button" class="btn btn-secondary" ng-click="procuraProcesso()">
                     <img src={{lupaIcon}} class="btn-icon">
-                </button>
+                  </button>
+                </div>
             </div>
         </div>
     </form>
@@ -23,12 +17,12 @@
             <table class="table table-bordered">
                 <thead class="thead-light">
                     <tr>
-                        <th class="col">PROTOCOLO</th>
-                        <th class="col">ENDEREÇO LOCAL</th>
-                        <th class="col">ENDEREÇO EXTERNO</th>
-                        <th class="col">ESTADO</th>
-                        <th class="col">PID</th>
-                        <th class="col">AÇÕES</th>
+                        <th scope="col">PROTOCOLO</th>
+                        <th scope="col">ENDEREÇO LOCAL</th>
+                        <th scope="col">ENDEREÇO EXTERNO</th>
+                        <th scope="col">ESTADO</th>
+                        <th scope="col">PID</th>
+                        <th scope="col">AÇÕES</th>
                     </tr>
                 </thead>
                 <tbody>

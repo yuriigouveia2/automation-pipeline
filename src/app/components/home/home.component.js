@@ -22,7 +22,7 @@ angular.
 
                 processoElement.classList.remove('small');
                 processoElement.classList.add('scale-up-center');
-              }, 750);
+              }, 250);
             }
     },
 });

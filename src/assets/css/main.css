@@ -98,10 +98,22 @@ ul {
     }
 }
 
+@media only screen and  (max-width: 889px) {
+    #processo-content {
+        max-width: auto;
+    }
+}
+
+@media only screen and  (min-width: 890px) {
+    #processo-content {
+        max-width: 70%;
+    }
+}
+
+
 .single-line {
     width: fit-content;
     display: flex;
-    margin: 0 auto;
 }
 
 .single-line > div   {
