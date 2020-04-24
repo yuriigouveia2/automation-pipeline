@@ -1,10 +1,12 @@
-<a href="" id="processos" class="text-decoration-none" ng-click="$ctrl.eventClick()">
-    <div id="card-processos" class="card row h-100 justify-content-center align-items-center shadow bg-white">
-        <img class="menu-opts"  src={{$ctrl.terminalIcon}}>
-        <div class="card-body">
-            <p class="card-text text-center">
-                <b>PROCESSOS</b>
-            </p>
+<ng-container ng-controller="homeCtrl">
+    <a href="" id="processos" class="text-decoration-none" ng-click="eventClick()">
+        <div id="card-processos" class="card row h-100 justify-content-center align-items-center shadow bg-white">
+            <img class="menu-opts"  src={{terminalIcon}}>
+            <div class="card-body">
+                <p class="card-text text-center">
+                    <b>PROCESSOS</b>
+                </p>
+            </div>
         </div>
-    </div>
-</a>
+    </a>
+</ng-container>

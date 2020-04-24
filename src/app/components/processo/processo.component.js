@@ -6,7 +6,7 @@ angular.
   .component('processo', { 
     templateUrl: `${__dirname}/src/app/components/processo/processo.view.html`,
   })
-  .controller('processoCtrl', ($scope, $rootScope) => {
+  .controller('processoCtrl', ($scope, $rootScope, $window) => {
       $scope.porta = null;
       $scope.processos = [];
       $scope.computadorIcon = path.join(process.cwd(), '/src/assets/icons/computador-100.png');
@@ -44,6 +44,12 @@ angular.
             });
         }
       }
+
+      $scope.$on("$destroy", function handler() {
+        $scope.processos = [];
+        $scope.porta = null;
+        $scope.$apply();
+    });
   });
 
   getProcessosData = function(data, porta) {

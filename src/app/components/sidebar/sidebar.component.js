@@ -2,11 +2,13 @@ angular.
   module('automation').
   component('sidebar', {  
       templateUrl: `${__dirname}/src/app/components/sidebar/sidebar.view.html`,
-      controller: function HomeController() {
-            this.homeIcon = path.join(process.cwd(), '/src/assets/icons/home-40.png');
-            this.terminalIcon = path.join(process.cwd(), '/src/assets/icons/terminal-48.png');
+      controller: function SidebarController($scope) {
+            $scope.homeIcon = path.join(process.cwd(), '/src/assets/icons/home-40.png');
+            $scope.terminalIcon = path.join(process.cwd(), '/src/assets/icons/terminal-48.png');
 
-            this.homeClick = function() {
+            $scope.homeClick = function() {
+
+              console.log($scope)
 
               const element = document.getElementById('card-processos');
               const sidebarElement = document.getElementById('sidebar');
@@ -26,6 +28,7 @@ angular.
             }
       },
 });
+
 hideComponent = function() {
   const element = document.getElementsByClassName('scale-up-center');
   
