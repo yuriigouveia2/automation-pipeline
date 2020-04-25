@@ -14,8 +14,8 @@ export class AppComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.childProcessService.childProcess.exec('ls', [], (err, data) => {
-      console.log(data, err);
-    });
+    // this.childProcessService.childProcess.exec('ls', [], (err, data) => {
+    //   console.log(data, err);
+    // });
   }
 }

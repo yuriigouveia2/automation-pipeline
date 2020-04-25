@@ -11,11 +11,17 @@ export class InicioComponent implements OnInit {
 
   terminal = '';
   constructor() {
+    this.setPathLocalStorage();
   }
 
   ngOnInit() {
     this.terminal = Util.getAssetHardly(AssetTypeEnum.ICONS, 'terminal-48.png');
-    console.log(this.terminal);
+  }
+
+  private setPathLocalStorage() {
+    if (!localStorage.getItem('pathAssets')) {
+      localStorage.setItem('pathAssets',  `${window.location.pathname}assets`);
+    }
   }
 
 }

@@ -4,6 +4,10 @@ export class Util {
 
   static getAssetHardly(assetType: AssetTypeEnum, file: string) {
     const assetTypeStr = new AssetType(assetType);
-    return `${window.location.pathname}assets/${assetTypeStr.descricao}/${file}`;
+    return `${this.getPathAssets()}/${assetTypeStr.descricao}/${file}`;
+  }
+
+  static getPathAssets() {
+    return localStorage.getItem('pathAssets');
   }
 }

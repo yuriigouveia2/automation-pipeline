@@ -5,16 +5,24 @@ import { NgxChildProcessModule } from 'ngx-childprocess';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BasicComponent } from './layouts/basic/basic.component';
+import { SidebarComponent } from './layouts/components/sidebar/sidebar.component';
+import { ContentComponent } from './modules/content/content.component';
+import { CommonComponent } from './layouts/common/common.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
    declarations: [
       AppComponent,
-      BasicComponent
+      BasicComponent,
+      SidebarComponent,
+      CommonComponent
    ],
    imports: [
       BrowserModule,
       AppRoutingModule,
-      NgxChildProcessModule
+      NgxChildProcessModule,
+      FormsModule,
+      ReactiveFormsModule
    ],
    providers: [],
    bootstrap: [
