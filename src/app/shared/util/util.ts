@@ -10,4 +10,8 @@ export class Util {
   static getPathAssets() {
     return localStorage.getItem('pathAssets');
   }
+
+  static async delay(ms: number = 700) {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+  }
 }

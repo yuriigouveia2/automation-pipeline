@@ -1,4 +1,4 @@
-<div class="sidebar">
+<div class="sidebar" [ngClass]="status ? 'scale-down-center' : 'scale-up-center'">
   <nav id="sidebar" class="wrapper">
     <!-- <div class="sidebar-header">
         <h3>Menu</h3>
@@ -6,14 +6,14 @@
     <div id="sidebar-content" class="fit">
         <ul>
             <li>
-                <a href="javascript:void(0)" [routerLink]="['/']" (click)="goHome()">
+                <a href="javascript:void(0)" (click)="goHome()">
                     <div class="card justify-content-center align-items-center shadow bg-white">
                         <img class="menu-opts"  [src]=homeIcon sizes="40x40">
                     </div>
                 </a>
             </li>
             <li>
-              <a href="javascript:void(0)" [routerLink]="['/processos']" (click)="goProcess()">
+              <a href="javascript:void(0)" (click)="goProcess()">
                 <div class="card justify-content-center align-items-center shadow bg-white">
                     <img class="menu-opts"  [src]=terminalIcon>
                 </div>

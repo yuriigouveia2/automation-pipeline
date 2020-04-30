@@ -15,6 +15,7 @@ export class ProcessComponent implements OnInit {
   lupaIcon = '';
   processes: Process[] = [];
   processForm: FormGroup;
+  status: boolean;
 
   constructor(
     private FB: FormBuilder,
@@ -23,8 +24,13 @@ export class ProcessComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.lupaIcon = Util.getAssetHardly(AssetTypeEnum.ICONS, 'lupa-48.png');
+    this.initVariables();
     this.createForm();
+  }
+
+  private initVariables() {
+    this.lupaIcon = Util.getAssetHardly(AssetTypeEnum.ICONS, 'lupa-48.png');
+    this.status = false;
   }
 
   private createForm() {
@@ -47,7 +53,7 @@ export class ProcessComponent implements OnInit {
           this.processes = list;
           this.cdRef.detectChanges();
         });
-    } 
+    }
   }
 
   private getDataProcess(data, port) {
@@ -68,8 +74,8 @@ export class ProcessComponent implements OnInit {
   }
 
   removeProcess(process) {
-    if (process.pid) { 
-      this.childProcessService.childProcess.exec(`taskkill /f /pid ${process.pid}`, [], 
+    if (process.pid) {
+      this.childProcessService.childProcess.exec(`taskkill /f /pid ${process.pid}`, [],
         (err, data) => {
           if (err) {
             console.log(err);

@@ -2,8 +2,11 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
+import 'mocha';
+import 'chai';
 
 import { ProcessComponent } from './process.component';
+import { expect } from 'chai';
 
 describe('ProcessComponent', () => {
   let component: ProcessComponent;
@@ -22,7 +25,7 @@ describe('ProcessComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('should create', (res) => {
+    expect(component).to.equal(true);
   });
 });

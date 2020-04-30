@@ -1,7 +1,7 @@
-<div class="max-height">
+<div class="max-height" [ngClass]="status ? 'scale-down-center' : 'scale-up-center'">
   <div class="row h-100 w-100 justify-content-center align-items-center">
     <ng-container>
-      <a href="javascript:void(0)" id="processos" class="text-decoration-none" [routerLink]="['/content/processos']">
+      <a href="javascript:void(0)" id="processos" class="text-decoration-none" (click)="goToProcess()">
           <div id="card-processos" class="card row h-100 justify-content-center align-items-center shadow bg-white">
               <img class="menu-opts"  [src]="terminal">
               <div class="card-body">
