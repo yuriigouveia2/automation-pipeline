@@ -1,3 +1,4 @@
+import { TestComponent } from './test/test.component';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ContentRoutingModule } from './content-routing.module';
@@ -14,7 +15,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   ],
   declarations: [
     ContentComponent,
-    ProcessComponent
+    ProcessComponent,
+    TestComponent
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })

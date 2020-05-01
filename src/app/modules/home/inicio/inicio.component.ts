@@ -10,7 +10,8 @@ import { Router } from '@angular/router';
 })
 export class InicioComponent implements OnInit {
 
-  terminal = '';
+  terminalIcon = '';
+  testIcon = '';
   status: boolean;
 
   constructor(
@@ -24,7 +25,8 @@ export class InicioComponent implements OnInit {
   }
 
   private initVariables() {
-    this.terminal = Util.getAssetHardly(AssetTypeEnum.ICONS, 'terminal-48.png');
+    this.terminalIcon = Util.getAssetHardly(AssetTypeEnum.ICONS, 'terminal-48.png');
+    this.testIcon = Util.getAssetHardly(AssetTypeEnum.ICONS, 'teste-40.png');
     this.status = false;
   }
 
@@ -34,10 +36,10 @@ export class InicioComponent implements OnInit {
     }
   }
 
-  goToProcess() {
+  goToContent(path: string) {
     this.status = true;
     Util.delay(700).then(() => {
-      this.route.navigate(['/content/processos']);
+      this.route.navigate([path]);
     });
   }
 

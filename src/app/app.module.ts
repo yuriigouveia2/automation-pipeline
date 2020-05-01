@@ -9,6 +9,8 @@ import { SidebarComponent } from './layouts/components/sidebar/sidebar.component
 import { ContentComponent } from './modules/content/content.component';
 import { CommonComponent } from './layouts/common/common.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
    declarations: [
@@ -22,7 +24,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
       AppRoutingModule,
       NgxChildProcessModule,
       FormsModule,
-      ReactiveFormsModule
+      ReactiveFormsModule,
+      BrowserAnimationsModule,
+      MatProgressSpinnerModule
    ],
    providers: [],
    bootstrap: [

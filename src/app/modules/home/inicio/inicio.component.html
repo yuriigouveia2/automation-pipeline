@@ -1,9 +1,9 @@
 <div class="max-height" [ngClass]="status ? 'scale-down-center' : 'scale-up-center'">
   <div class="row h-100 w-100 justify-content-center align-items-center">
     <ng-container>
-      <a href="javascript:void(0)" id="processos" class="text-decoration-none" (click)="goToProcess()">
+      <a href="javascript:void(0)" id="processos" class="text-decoration-none" (click)="goToContent('/content/processos')">
           <div id="card-processos" class="card row h-100 justify-content-center align-items-center shadow bg-white">
-              <img class="menu-opts"  [src]="terminal">
+              <img class="menu-opts"  [src]="terminalIcon">
               <div class="card-body">
                   <p class="card-text text-center">
                       <b>PROCESSOS</b>
@@ -11,6 +11,17 @@
               </div>
           </div>
       </a>
-  </ng-container>
+
+      <a href="javascript:void(0)" id="processos" class="text-decoration-none" (click)="goToContent('/content/teste')">
+        <div id="card-test" class="card row h-100 justify-content-center align-items-center shadow bg-white">
+            <img class="menu-opts"  [src]="testIcon">
+            <div class="card-body">
+                <p class="card-text text-center">
+                    <b>TESTE DE CARGA</b>
+                </p>
+            </div>
+        </div>
+      </a>
+    </ng-container>
   </div>
 </div>

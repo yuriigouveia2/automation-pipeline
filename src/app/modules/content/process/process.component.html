@@ -1,4 +1,4 @@
-<div>
+<div [ngClass]="status ? 'scale-down-center' : 'scale-up-center'">
   <form [formGroup]="processForm">
       <div class="col-12">
           <div class="input-group mb-3">
@@ -47,4 +47,11 @@
           </table>
       </div>
   </div>
+  <ng-container>
+    <mat-progress-spinner
+        [color]="'primary'"
+        [mode]="'indeterminate'"
+        [value]="50">
+    </mat-progress-spinner>
+  </ng-container>
 </div>

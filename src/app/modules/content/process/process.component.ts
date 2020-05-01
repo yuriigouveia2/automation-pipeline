@@ -1,3 +1,4 @@
+import { EmitService } from './../../../shared/service/emit.service';
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Util } from 'src/app/shared/util/util';
@@ -16,21 +17,31 @@ export class ProcessComponent implements OnInit {
   processes: Process[] = [];
   processForm: FormGroup;
   status: boolean;
+  loading: boolean;
 
   constructor(
     private FB: FormBuilder,
     private childProcessService: ChildProcessService,
+    private emitService: EmitService,
     private cdRef: ChangeDetectorRef
   ) { }
 
   ngOnInit() {
     this.initVariables();
     this.createForm();
+    this.observable();
   }
 
   private initVariables() {
     this.lupaIcon = Util.getAssetHardly(AssetTypeEnum.ICONS, 'lupa-48.png');
     this.status = false;
+    this.loading = false;
+  }
+
+  private observable() {
+    this.emitService.emitterObj.subscribe(status => {
+      this.status = status;
+    });
   }
 
   private createForm() {
@@ -40,20 +51,28 @@ export class ProcessComponent implements OnInit {
   }
 
   findProcess() {
-    let list = [];
+    let list: any[];
     if (this.processForm.value.port) {
-      this.childProcessService.childProcess.exec(`netstat -ano | findStr :${this.processForm.value.port} | findStr "LISTENING"`, [],
+      list = [];
+      this.loading = true;
+      this.commandToFindProcess(list);
+    }
+  }
+
+  private commandToFindProcess(list: any[]) {
+    this.childProcessService.childProcess.exec(`netstat -ano | findStr :${this.processForm.value.port} | findStr "LISTENING"`, [],
         (err, data) => {
           if (err) {
             console.log(err);
+            this.loading = false;
             return;
           }
 
           list = [...this.getDataProcess(data.trim(), this.processForm.value.port)];
           this.processes = list;
           this.cdRef.detectChanges();
+          this.loading = false;
         });
-    }
   }
 
   private getDataProcess(data, port) {

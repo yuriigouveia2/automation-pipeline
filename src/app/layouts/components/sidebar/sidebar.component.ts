@@ -1,5 +1,6 @@
+import { EmitService } from './../../../shared/service/emit.service';
 import { Router } from '@angular/router';
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, Output, EventEmitter } from '@angular/core';
 import { AssetTypeEnum } from 'src/app/core/enums/asset-type.enum';
 import { Util } from 'src/app/shared/util/util';
 import { CONSTANTS } from 'src/app/core/constants/constants';
@@ -11,12 +12,13 @@ import { CONSTANTS } from 'src/app/core/constants/constants';
 })
 export class SidebarComponent implements OnInit {
 
-  homeIcon = '';
-  terminalIcon = '';
+  icons: any;
   status: boolean;
+  url: any;
 
   constructor(
-    private route: Router
+    private route: Router,
+    private emitService: EmitService
    ) { }
 
   ngOnInit() {
@@ -24,12 +26,16 @@ export class SidebarComponent implements OnInit {
   }
 
   initVariables() {
-    this.homeIcon = Util.getAssetHardly(AssetTypeEnum.ICONS, 'home-40.png');
-    this.terminalIcon = Util.getAssetHardly(AssetTypeEnum.ICONS, 'terminal-48.png');
+    this.url = CONSTANTS.URL;
+    this.icons = {
+      home      : Util.getAssetHardly(AssetTypeEnum.ICONS, 'home-40.png'),
+      terminal  : Util.getAssetHardly(AssetTypeEnum.ICONS, 'terminal-48.png'),
+      test      : Util.getAssetHardly(AssetTypeEnum.ICONS, 'teste-40.png')
+    };
     this.status = false;
   }
 
-  private isClickedEqualToCurrentUrl(clikedUrl) {
+  private isClickedEqualToCurrentUrl(clikedUrl: string) {
     const currentUrl = this.route.url;
     if (clikedUrl === currentUrl) {
       return true;
@@ -37,19 +43,25 @@ export class SidebarComponent implements OnInit {
     return false;
   }
 
+  private sidebarStatusOnClick(clikedUrl: string) {
+    if (clikedUrl !== CONSTANTS.URL.HOME) {
+      return true;
+    }
+    return false;
+  }
+
   private waitThenGo(goToUrl: string) {
-    this.status = !this.isClickedEqualToCurrentUrl(goToUrl);
+    const componentStatus = !this.isClickedEqualToCurrentUrl(goToUrl);
+    const sidebarStatus = !this.sidebarStatusOnClick(goToUrl);
+
+    this.status = sidebarStatus;
+    this.emitService.emitStatusChange(componentStatus);
     Util.delay().then(() => {
       this.route.navigate([goToUrl]);
     });
   }
 
-  goHome() {
-    this.waitThenGo(CONSTANTS.URL.HOME);
+  goTo(path: string) {
+    this.waitThenGo(path);
   }
-
-  goProcess() {
-    this.waitThenGo(CONSTANTS.URL.PROCESSES);
-  }
-
 }
