@@ -28,6 +28,9 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
       BrowserAnimationsModule,
       MatProgressSpinnerModule
    ],
+   exports: [
+    MatProgressSpinnerModule
+   ],
    providers: [],
    bootstrap: [
       AppComponent

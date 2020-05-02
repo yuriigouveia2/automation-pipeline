@@ -5,13 +5,15 @@ import { ContentRoutingModule } from './content-routing.module';
 import { ProcessComponent } from './process/process.component';
 import { ContentComponent } from './content.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatStepperModule } from '@angular/material/stepper';
 
 @NgModule({
   imports: [
     CommonModule,
     ContentRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatStepperModule
   ],
   declarations: [
     ContentComponent,
