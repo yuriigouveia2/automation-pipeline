@@ -6,6 +6,7 @@ import { ProcessComponent } from './process/process.component';
 import { ContentComponent } from './content.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatStepperModule } from '@angular/material/stepper';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   imports: [
@@ -13,7 +14,8 @@ import { MatStepperModule } from '@angular/material/stepper';
     ContentRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    MatStepperModule
+    MatStepperModule,
+    MatProgressSpinnerModule
   ],
   declarations: [
     ContentComponent,

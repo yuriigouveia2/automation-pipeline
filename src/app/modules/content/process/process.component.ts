@@ -69,23 +69,26 @@ export class ProcessComponent implements OnInit {
           }
 
           list = [...this.getDataProcess(data.trim(), this.processForm.value.port)];
-          this.processes = list;
-          this.cdRef.detectChanges();
           this.loading = false;
+
+          Util.delay(200).then(() => {
+            this.processes = list;
+            this.cdRef.detectChanges();
+          });
         });
   }
 
   private getDataProcess(data, port) {
-    let processes = [];
-    let filtered = data.replace('\n', '').split(" ").filter(x => !!x);
+    const processes = [];
+    const filtered = data.replace('\n', '').split(' ').filter(x => !!x);
 
     for (let i = 0; i < filtered.length; i += 5 ) {
       processes.push(new Process({
         protocol        : filtered[i],
-        localAddress    : filtered[i+1],
-        externalAddress : filtered[i+2],
-        state           : filtered[i+3],
-        pid             : filtered[i+4]
+        localAddress    : filtered[i + 1],
+        externalAddress : filtered[i + 2],
+        state           : filtered[i + 3],
+        pid             : filtered[i + 4]
       }))
     }
 

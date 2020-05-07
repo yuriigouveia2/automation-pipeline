@@ -2,3 +2,7 @@ form {
   padding-top: 1em;
 }
 
+mat-progress-spinner {
+  position: fixed;
+  z-index: 10;
+}

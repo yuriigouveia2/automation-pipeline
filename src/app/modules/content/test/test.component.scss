@@ -1,0 +1,10 @@
+.btn.btn-light {
+  border-radius: 10em;
+  background-color: #f3f4f5;
+  border-color: #f3f4f5;
+
+  &:hover {
+    background-color: #eaeaea;
+    border-color: #eaeaea;
+  }
+}

@@ -1,4 +1,11 @@
 <div [ngClass]="status ? 'scale-down-center' : 'scale-up-center'">
+  <div class="w-100 d-flex justify-content-center" *ngIf="loading">
+    <mat-progress-spinner
+        [color]="'primary'"
+        [mode]="'indeterminate'"
+        [value]="50">
+    </mat-progress-spinner>
+  </div>
   <form [formGroup]="processForm">
       <div class="col-12">
           <div class="input-group mb-3">
@@ -11,47 +18,39 @@
           </div>
       </div>
   </form>
-
   <div class="col-12 justify-content-center align-items-center">
-      <div class="table-responsive">
-          <table class="table table-bordered">
-              <thead class="thead-light">
-                  <tr>
-                      <th scope="col">PROTOCOLO</th>
-                      <th scope="col">ENDEREÇO LOCAL</th>
-                      <th scope="col">ENDEREÇO EXTERNO</th>
-                      <th scope="col">ESTADO</th>
-                      <th scope="col">PID</th>
-                      <th scope="col">AÇÕES</th>
-                  </tr>
-              </thead>
-              <tbody>
-                <ng-container *ngIf="processes.length > 0">
-                  <tr *ngFor="let item of processes">
-                    <td>{{item.protocol}}</td>
-                    <td>{{item.localAddress}}</td>
-                    <td>{{item.externalAddress}}</td>
-                    <td>{{item.state}}</td>
-                    <td>{{item.pid}}</td>
-                    <td>
-                      <button type="button" (click)="removeProcess(item)" class="btn btn-danger">
-                        <i class="fa fa-trash"></i>
-                      </button>
-                    </td>
-                  </tr>
-                </ng-container>
-                <tr *ngIf="processes.length == 0">
-                    <td class="text-center" colspan="6">Nenhum item encontrado.</td>
-                </tr>
-              </tbody>
-          </table>
-      </div>
+    <div class="table-responsive">
+      <table class="table table-bordered">
+          <thead class="thead-light">
+              <tr>
+                  <th scope="col">PROTOCOLO</th>
+                  <th scope="col">ENDEREÇO LOCAL</th>
+                  <th scope="col">ENDEREÇO EXTERNO</th>
+                  <th scope="col">ESTADO</th>
+                  <th scope="col">PID</th>
+                  <th scope="col">AÇÕES</th>
+              </tr>
+          </thead>
+          <tbody>
+            <ng-container *ngIf="processes.length > 0">
+              <tr *ngFor="let item of processes">
+                <td>{{item.protocol}}</td>
+                <td>{{item.localAddress}}</td>
+                <td>{{item.externalAddress}}</td>
+                <td>{{item.state}}</td>
+                <td>{{item.pid}}</td>
+                <td>
+                  <button type="button" (click)="removeProcess(item)" class="btn btn-danger">
+                    <i class="fa fa-trash"></i>
+                  </button>
+                </td>
+              </tr>
+            </ng-container>
+            <tr *ngIf="processes.length == 0">
+                <td class="text-center" colspan="6">Nenhum item encontrado.</td>
+            </tr>
+          </tbody>
+      </table>
+    </div>
   </div>
-  <ng-container>
-    <mat-progress-spinner
-        [color]="'primary'"
-        [mode]="'indeterminate'"
-        [value]="50">
-    </mat-progress-spinner>
-  </ng-container>
 </div>

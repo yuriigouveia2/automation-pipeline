@@ -1,16 +1,29 @@
 <div>
   <!-- <form> -->
     <mat-horizontal-stepper [linear]="true" #stepper>
+
       <mat-step [stepControl]="configurationTypeForm">
-        <form [formGroup]="configurationTypeForm">
+        <form [formGroup]="configurationTypeForm" class="">
           <ng-template matStepLabel>Step 1</ng-template>
-          <div>1</div>
-          <input type="text" placeholder="Teste" formControlName="configurationType">
+          <div class="row m-2">
+            <div class="col-12 btn-group btn-group-toggle d-flex justify-content-center" data-toggle="buttons">
+              <label class="col-4 btn btn-light">
+                <input type="radio" id="option1" [value]="types.manual" formControlName="configurationType" checked (change)="onChange(stepper)">
+                Definir parâmetros manualmente
+              </label>
+            </div>
+          </div>
+          <div class="row m-2">
+            <div class="col-12 btn-group btn-group-toggle d-flex justify-content-center" data-toggle="buttons">
+              <label class="col-4 btn btn-light">
+                <input type="radio" id="option1" [value]="types.arquivo" formControlName="configurationType" checked (change)="onChange(stepper)">
+                Usar arquivo de configuração de parâmetros
+              </label>
+            </div>
+          </div>
         </form>
-        <div>
-          <button mat-button matStepperNext>Próximo</button>
-        </div>
       </mat-step>
+
       <mat-step [stepControl]="configurationTypeForm">
         <form [formGroup]="configurationTypeForm">
           <ng-template matStepLabel>Step 2</ng-template>
@@ -21,6 +34,7 @@
           <button mat-button matStepperNext>Próximo</button>
         </div>
       </mat-step>
+
       <mat-step [stepControl]="configurationTypeForm">
         <form [formGroup]="configurationTypeForm">
           <ng-template matStepLabel>Step 3</ng-template>
