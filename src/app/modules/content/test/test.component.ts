@@ -10,14 +10,18 @@ import { MatHorizontalStepper } from '@angular/material/stepper';
 export class TestComponent implements OnInit {
 
   testForm: FormGroup;
+  fileLabelText: string;
 
   constructor(
     private FB: FormBuilder
   ) { }
 
   ngOnInit() {
+    this.initVariables();
     this.createForm();
   }
+
+  private initVariables = () => this.fileLabelText = 'Escolha o arquivo';
 
   get types() {
     return {
@@ -29,7 +33,10 @@ export class TestComponent implements OnInit {
   createForm() {
     this.testForm = this.FB.group({
       configurationTypeForm: this.FB.group({
-        configurationType: ['', [Validators.required]]
+        configurationType: ['', [Validators.required]],
+      }),
+      fileForm : this.FB.group( {
+        file: ['', [Validators.required]]
       })
     });
   }
@@ -38,6 +45,14 @@ export class TestComponent implements OnInit {
     return this.testForm.controls.configurationTypeForm as FormGroup;
   }
 
+  get fileForm() {
+    return this.testForm.controls.fileForm as FormGroup;
+  }
+
   onChange = (stepperComponent: MatHorizontalStepper) => stepperComponent.next();
 
+  showFileName = (event: any, stepperComponent: MatHorizontalStepper) => {
+    this.fileLabelText = event.target.files[0].name;
+    stepperComponent.next();
+  }
 }

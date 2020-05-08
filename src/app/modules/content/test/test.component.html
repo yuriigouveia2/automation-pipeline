@@ -4,7 +4,7 @@
 
       <mat-step [stepControl]="configurationTypeForm">
         <form [formGroup]="configurationTypeForm" class="">
-          <ng-template matStepLabel>Step 1</ng-template>
+          <ng-template matStepLabel>Tipo de Parâmetros</ng-template>
           <div class="row m-2">
             <div class="col-12 btn-group btn-group-toggle d-flex justify-content-center" data-toggle="buttons">
               <label class="col-4 btn btn-light">
@@ -24,20 +24,25 @@
         </form>
       </mat-step>
 
-      <mat-step [stepControl]="configurationTypeForm">
-        <form [formGroup]="configurationTypeForm">
-          <ng-template matStepLabel>Step 2</ng-template>
-          <div>2</div>
-          <input type="text" placeholder="Teste" formControlName="configurationType">
+      <mat-step [stepControl]="fileForm">
+        <form [formGroup]="fileForm">
+          <ng-template matStepLabel>Configuração</ng-template>
+          <ng-container *ngIf="configurationTypeForm.value.configurationType == types.arquivo">
+            <div class="row m-2">
+              <div class="col-12 d-flex justify-content-center">
+                <div class="col-6 custom-file">
+                  <input type="file" formControlName="file" class="custom-file-input" id="customFile" (change)="showFileName($event, stepper)">
+                  <label class="custom-file-label" for="customFile" #fileLabel>{{fileLabelText}}</label>
+                </div>
+              </div>
+            </div>
+          </ng-container>
         </form>
-        <div>
-          <button mat-button matStepperNext>Próximo</button>
-        </div>
       </mat-step>
 
       <mat-step [stepControl]="configurationTypeForm">
         <form [formGroup]="configurationTypeForm">
-          <ng-template matStepLabel>Step 3</ng-template>
+          <ng-template matStepLabel>Resultados</ng-template>
           <div>3</div>
           <input type="text" placeholder="Teste" formControlName="configurationType">
         </form>

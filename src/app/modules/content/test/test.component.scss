@@ -8,3 +8,10 @@
     border-color: #eaeaea;
   }
 }
+
+.custom-file-input {
+  &:lang(en)~.custom-file-label::after {
+    content: 'Procurar' !important;
+  }
+}
+
