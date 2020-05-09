@@ -31,8 +31,11 @@
             <div class="row m-2">
               <div class="col-12 d-flex justify-content-center">
                 <div class="col-6 custom-file">
-                  <input type="file" formControlName="file" class="custom-file-input" id="customFile" (change)="showFileName($event, stepper)">
+                  <input type="file" formControlName="file" accept="text/x-yaml" class="custom-file-input"
+                    (change)="showFileName($event, stepper)" [ngClass]="{'is-invalid': !isValid()}">
                   <label class="custom-file-label" for="customFile" #fileLabel>{{fileLabelText}}</label>
+
+                  <div class="invalid-feedback" *ngIf="!isValid()">{{validateMessage(fileForm, 'file')}}</div>
                 </div>
               </div>
             </div>
