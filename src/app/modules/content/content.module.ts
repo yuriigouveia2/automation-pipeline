@@ -1,3 +1,4 @@
+import { CustomChartComponent } from './../../layouts/components/custom-chart/custom-chart.component';
 import { TestComponent } from './test/test.component';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -7,6 +8,7 @@ import { ContentComponent } from './content.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 @NgModule({
   imports: [
@@ -15,12 +17,14 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     FormsModule,
     ReactiveFormsModule,
     MatStepperModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    NgxChartsModule
   ],
   declarations: [
     ContentComponent,
     ProcessComponent,
-    TestComponent
+    TestComponent,
+    CustomChartComponent
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })

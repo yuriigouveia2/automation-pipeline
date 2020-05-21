@@ -1,6 +1,6 @@
 
 export enum AssetTypeEnum {
-  ICONS   = 1,
+  ICONS  = 1,
   IMG    = 2,
   LIBS   = 3,
   STYLES = 4
@@ -8,7 +8,7 @@ export enum AssetTypeEnum {
 
 
 const AssetTypeDescricao = new Map<number, string>([
-  [AssetTypeEnum.ICONS  , 'icons'  ],
+  [AssetTypeEnum.ICONS , 'icons' ],
   [AssetTypeEnum.IMG   , 'img'   ],
   [AssetTypeEnum.LIBS  , 'libs'  ],
   [AssetTypeEnum.STYLES, 'styles']

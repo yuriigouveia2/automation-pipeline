@@ -1,0 +1,20 @@
+<div class="col-12">
+  <div class="chart-responsive">
+    <ng-container *ngIf="type === chartEnum.BAR">
+      <ngx-charts-bar-vertical
+        [view]="graphicConfig.view"
+        [scheme]="graphicConfig.colorScheme"
+        [results]="graphicConfig.results"
+        [gradient]="graphicConfig.gradient"
+        [xAxis]="graphicConfig.showXAxis"
+        [yAxis]="graphicConfig.showYAxis"
+        [legend]="graphicConfig.showLegend"
+        [showXAxisLabel]="graphicConfig.showXAxisLabel"
+        [showYAxisLabel]="graphicConfig.showYAxisLabel"
+        [xAxisLabel]="graphicConfig.xAxisLabel"
+        [yAxisLabel]="graphicConfig.yAxisLabel"
+        (select)="onSelect($event)">
+      </ngx-charts-bar-vertical>
+    </ng-container>
+  </div>
+</div>

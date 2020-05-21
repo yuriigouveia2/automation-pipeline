@@ -1,6 +1,9 @@
+import { ColorScheme } from './../../../core/models/graphic/color-scheme.model';
+import { ChartTypeEnum } from './../../../core/enums/chart-type.enum';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, AfterContentInit } from '@angular/core';
 import { MatHorizontalStepper } from '@angular/material/stepper';
+import { GraphicConfig } from 'src/app/core/models/graphic/graphic-config.model';
 
 @Component({
   selector: 'app-test',
@@ -12,18 +15,46 @@ export class TestComponent implements OnInit {
   testForm: FormGroup;
   fileLabelText: string;
   formMessages: any;
+  chartEnum: any;
+  graphicConfig: GraphicConfig;
 
   constructor(
-    private FB: FormBuilder
+    private FB: FormBuilder,
   ) { }
 
   ngOnInit() {
     this.initVariables();
+    this.initGraphicConfig();
+
     this.createFormMessages();
     this.createForm();
   }
 
-  private initVariables = () => this.fileLabelText = 'Escolha o arquivo...';
+  private initVariables = () => {
+    this.fileLabelText = 'Escolha o arquivo...';
+    this.chartEnum = {
+      BAR: ChartTypeEnum.BAR,
+      LIN: ChartTypeEnum.LIN,
+      PIE: ChartTypeEnum.PIE,
+      PIZ: ChartTypeEnum.PIZ,
+    };
+  }
+
+  private initGraphicConfig() {
+    this.graphicConfig = new GraphicConfig({
+      showXAxisLabel: true,
+      showYAxisLabel: true,
+      xAxisLabel    : '',
+      yAxisLabel    : '',
+      colorScheme   : new ColorScheme({
+        domain: ['#5AA454']
+      }),
+      results: [{
+        name: 'teste',
+        value: '12'
+      }]
+    });
+  }
 
   get types() {
     return {

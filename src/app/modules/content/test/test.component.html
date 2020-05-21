@@ -44,14 +44,15 @@
       </mat-step>
 
       <mat-step [stepControl]="configurationTypeForm">
-        <form [formGroup]="configurationTypeForm">
+        <form [formGroup]="configurationTypeForm" class="graphic-center">
           <ng-template matStepLabel>Resultados</ng-template>
-          <div>3</div>
-          <input type="text" placeholder="Teste" formControlName="configurationType">
+          <app-custom-chart [type]="chartEnum.BAR" [graphicConfig]="graphicConfig"></app-custom-chart>
+          <!-- <div>3</div>
+          <input type="text" placeholder="Teste" formControlName="configurationType"> -->
         </form>
-        <div>
+        <!-- <div>
           <button mat-button (click)="stepper.reset()">Reset</button>
-        </div>
+        </div> -->
       </mat-step>
     </mat-horizontal-stepper>
   <!-- </form> -->

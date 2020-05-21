@@ -4,7 +4,7 @@ export class Process {
     public localAddress    ?: string;
     public externalAddress ?: string;
     public state           ?: string;
-    
+
     constructor(process) {
         if (process) {
             this.pid             = process.pid;
@@ -12,6 +12,6 @@ export class Process {
             this.localAddress    = process.localAddress;
             this.externalAddress = process.externalAddress;
             this.state           = process.state;
-        }    
+        }
     }
 }

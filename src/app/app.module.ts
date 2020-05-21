@@ -1,3 +1,4 @@
+import { CustomChartComponent } from './layouts/components/custom-chart/custom-chart.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { NgxChildProcessModule } from 'ngx-childprocess';
@@ -11,13 +12,14 @@ import { CommonComponent } from './layouts/common/common.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 @NgModule({
    declarations: [
       AppComponent,
       BasicComponent,
       SidebarComponent,
-      CommonComponent
+      CommonComponent,
    ],
    imports: [
       BrowserModule,
