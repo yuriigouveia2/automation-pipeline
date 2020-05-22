@@ -3,7 +3,7 @@ import { GraphicData } from './graphic-data.model';
 
 export class GraphicConfig {
   public view           ?: Array<number> = [];
-  public colorScheme    ?: ColorScheme;
+  public colorScheme    : ColorScheme = new ColorScheme();
   public results        ?: GraphicData[] = [];
   public gradient        = false;
   public showXAxis       = true;
@@ -24,7 +24,7 @@ export class GraphicConfig {
       this.showLegend     = config.showLegend     ? config.showLegend     : true;
       this.showXAxisLabel = config.showXAxisLabel ? config.showXAxisLabel : false;
       this.showYAxisLabel = config.showYAxisLabel ? config.showYAxisLabel : false;
-      this.colorScheme    = config.colorScheme;
+      this.colorScheme    = config.colorScheme    ? config.colorScheme    : new ColorScheme();
       this.xAxisLabel     = config.xAxisLabel;
       this.yAxisLabel     = config.yAxisLabel;
     }

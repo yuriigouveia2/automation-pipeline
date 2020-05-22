@@ -103,7 +103,7 @@ export class ProcessComponent implements OnInit {
             console.log(err);
             return;
           }
-          let processs = this.processes;
+          const processs = this.processes;
           this.processes = [...processs.filter(x => x.pid !== process.pid)];
           this.cdRef.detectChanges();
         });

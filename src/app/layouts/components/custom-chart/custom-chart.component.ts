@@ -16,7 +16,6 @@ export class CustomChartComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log(this.graphicConfig);
     this.initVariables();
   }
 

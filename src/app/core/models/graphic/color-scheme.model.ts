@@ -1,5 +1,5 @@
 export class ColorScheme {
-  public domain: string[];
+  public domain: string[] = ['#5AA454'];
 
   constructor(colorScheme?: ColorScheme) {
     if (colorScheme) {

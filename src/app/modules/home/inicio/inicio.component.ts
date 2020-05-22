@@ -31,9 +31,7 @@ export class InicioComponent implements OnInit {
   }
 
   private setPathLocalStorage() {
-    if (!localStorage.getItem('pathAssets')) {
-      localStorage.setItem('pathAssets',  `${window.location.pathname}assets`);
-    }
+    localStorage.setItem('pathAssets',  `${window.location.pathname}assets`);
   }
 
   goToContent(path: string) {

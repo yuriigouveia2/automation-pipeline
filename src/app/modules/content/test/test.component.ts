@@ -4,6 +4,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit, ChangeDetectorRef, AfterContentInit } from '@angular/core';
 import { MatHorizontalStepper } from '@angular/material/stepper';
 import { GraphicConfig } from 'src/app/core/models/graphic/graphic-config.model';
+import { ChildProcessService } from 'ngx-childprocess';
 
 @Component({
   selector: 'app-test',
@@ -20,6 +21,7 @@ export class TestComponent implements OnInit {
 
   constructor(
     private FB: FormBuilder,
+    private childProcessService: ChildProcessService,
   ) { }
 
   ngOnInit() {
@@ -46,13 +48,6 @@ export class TestComponent implements OnInit {
       showYAxisLabel: true,
       xAxisLabel    : '',
       yAxisLabel    : '',
-      colorScheme   : new ColorScheme({
-        domain: ['#5AA454']
-      }),
-      results: [{
-        name: 'teste',
-        value: '12'
-      }]
     });
   }
 
@@ -72,8 +67,8 @@ export class TestComponent implements OnInit {
         file: ['',
                 [Validators.required,
                 Validators.pattern('.*\.yml')  ||
-                Validators.pattern('.*\.yaml') ||
                 Validators.pattern('.*\.YML')  ||
+                Validators.pattern('.*\.yaml') ||
                 Validators.pattern('.*\.YAML')]
               ]
       })
@@ -93,7 +88,19 @@ export class TestComponent implements OnInit {
   showFileName = (event: any, stepperComponent: MatHorizontalStepper) => {
     this.fileLabelText = event.target.files[0].name;
     if (!this.isValid()) { return; }
+    this.runArtilleryLoadTest();
     stepperComponent.next();
+  }
+
+  private runArtilleryLoadTest() {
+    const configFileToExecute = `.\\${this.fileForm.controls.file.value.replace('/', '\\')}`;
+    this.childProcessService.childProcess.exec(`artillery run ${configFileToExecute}`, [],
+      (err, data) => {
+        if (err) {
+          console.log(err);
+          return;
+        }
+      });
   }
 
   isValid() {
