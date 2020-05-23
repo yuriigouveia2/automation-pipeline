@@ -5,6 +5,7 @@ import { Component, OnInit, ChangeDetectorRef, AfterContentInit } from '@angular
 import { MatHorizontalStepper } from '@angular/material/stepper';
 import { GraphicConfig } from 'src/app/core/models/graphic/graphic-config.model';
 import { ChildProcessService } from 'ngx-childprocess';
+import { Util } from 'src/app/shared/util/util';
 
 @Component({
   selector: 'app-test',
@@ -15,6 +16,7 @@ export class TestComponent implements OnInit {
 
   testForm: FormGroup;
   fileLabelText: string;
+  filepath: string;
   formMessages: any;
   chartEnum: any;
   graphicConfig: GraphicConfig;
@@ -86,20 +88,28 @@ export class TestComponent implements OnInit {
   onChange = (stepperComponent: MatHorizontalStepper) => stepperComponent.next();
 
   showFileName = (event: any, stepperComponent: MatHorizontalStepper) => {
+    this.filepath = (document.getElementById("myFile") as any).files[0].path;
     this.fileLabelText = event.target.files[0].name;
+
     if (!this.isValid()) { return; }
+
     this.runArtilleryLoadTest();
     stepperComponent.next();
   }
 
   private runArtilleryLoadTest() {
-    const configFileToExecute = `.\\${this.fileForm.controls.file.value.replace('/', '\\')}`;
+    const configFileToExecute = `${this.filepath}`;
+    console.log(`artillery run ${configFileToExecute}`)
     this.childProcessService.childProcess.exec(`artillery run ${configFileToExecute}`, [],
       (err, data) => {
         if (err) {
           console.log(err);
           return;
         }
+        while(!data) {
+          Util.delay(100).then(() => console.log('Executando...'));
+        }
+        console.log(data)
       });
   }
 
@@ -123,4 +133,11 @@ export class TestComponent implements OnInit {
     }
     return null;
   }
+
+  private toBase64 = (file) => new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = (error) => reject(error); 
+  });
 }
