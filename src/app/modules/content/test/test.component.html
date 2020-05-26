@@ -1,5 +1,4 @@
 <div>
-  <!-- <form> -->
     <mat-horizontal-stepper [linear]="true" #stepper>
 
       <mat-step [stepControl]="configurationTypeForm">
@@ -47,13 +46,11 @@
         <form [formGroup]="configurationTypeForm" class="graphic-center">
           <ng-template matStepLabel>Resultados</ng-template>
           <app-custom-chart [type]="chartEnum.BAR" [graphicConfig]="graphicConfig"></app-custom-chart>
-          <!-- <div>3</div>
-          <input type="text" placeholder="Teste" formControlName="configurationType"> -->
+          <!-- <input type="text" placeholder="Teste" formControlName="configurationType"> -->
         </form>
         <!-- <div>
           <button mat-button (click)="stepper.reset()">Reset</button>
         </div> -->
       </mat-step>
     </mat-horizontal-stepper>
-  <!-- </form> -->
 </div>

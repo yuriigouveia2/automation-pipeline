@@ -14,4 +14,6 @@ export class Util {
   static async delay(ms: number = 700) {
     return new Promise((resolve) => setTimeout(resolve, ms));
   }
+
+  static dateToBrazilianDateString = (date: Date) => date.toLocaleString();
 }

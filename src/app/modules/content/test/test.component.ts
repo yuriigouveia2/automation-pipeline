@@ -1,11 +1,10 @@
 import { ColorScheme } from './../../../core/models/graphic/color-scheme.model';
 import { ChartTypeEnum } from './../../../core/enums/chart-type.enum';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Component, OnInit, ChangeDetectorRef, AfterContentInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatHorizontalStepper } from '@angular/material/stepper';
 import { GraphicConfig } from 'src/app/core/models/graphic/graphic-config.model';
 import { ChildProcessService } from 'ngx-childprocess';
-import { Util } from 'src/app/shared/util/util';
 
 @Component({
   selector: 'app-test',
@@ -99,18 +98,22 @@ export class TestComponent implements OnInit {
 
   private runArtilleryLoadTest() {
     const configFileToExecute = `${this.filepath}`;
-    console.log(`artillery run ${configFileToExecute}`)
+    console.log('Início: ', new Date())
     this.childProcessService.childProcess.exec(`artillery run ${configFileToExecute}`, [],
-      (err, data) => {
+    (err, data) => {
         if (err) {
           console.log(err);
           return;
         }
-        while(!data) {
-          Util.delay(100).then(() => console.log('Executando...'));
-        }
+        console.log('Fim: ', new Date())
         console.log(data)
+
+        const dataFormatted = this.formatArtilleryOutput(data);
       });
+  }
+
+  private formatArtilleryOutput(data: any) {
+    throw new Error("Method not implemented.");
   }
 
   isValid() {
