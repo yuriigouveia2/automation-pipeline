@@ -5,6 +5,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatHorizontalStepper } from '@angular/material/stepper';
 import { GraphicConfig } from 'src/app/core/models/graphic/graphic-config.model';
 import { ChildProcessService } from 'ngx-childprocess';
+import { Util } from 'src/app/shared/util/util';
 
 @Component({
   selector: 'app-test',
@@ -19,6 +20,9 @@ export class TestComponent implements OnInit {
   formMessages: any;
   chartEnum: any;
   graphicConfig: GraphicConfig;
+  loading = false;
+  resultCompleted = false;
+  reportFilename = '';
 
   constructor(
     private FB: FormBuilder,
@@ -97,9 +101,13 @@ export class TestComponent implements OnInit {
   }
 
   private runArtilleryLoadTest() {
-    const configFileToExecute = `${this.filepath}`;
     console.log('Início: ', new Date())
-    this.childProcessService.childProcess.exec(`artillery run ${configFileToExecute}`, [],
+    const dateToJsonName = new Date().toISOString();
+    this.reportFilename = `report-${dateToJsonName}`;
+    const commandToExecute = `artillery run -o %HOME%\\.artillery\\${this.reportFilename}.json ${this.filepath}`;
+
+    this.loading = true;
+    this.childProcessService.childProcess.exec(commandToExecute, [],
     (err, data) => {
         if (err) {
           console.log(err);
@@ -108,12 +116,20 @@ export class TestComponent implements OnInit {
         console.log('Fim: ', new Date())
         console.log(data)
 
-        const dataFormatted = this.formatArtilleryOutput(data);
+        this.createHTMLReport();
       });
   }
 
-  private formatArtilleryOutput(data: any) {
-    throw new Error("Method not implemented.");
+  private createHTMLReport() {
+    this.childProcessService.childProcess.exec(`artillery report %HOME%\\.artillery\\${this.reportFilename}.json`, [],
+      (err, data) => {
+          if (err) {
+            console.log(err);
+            return;
+          }
+          this.loading = false;
+          this.resultCompleted = true;
+        });
   }
 
   isValid() {
@@ -137,10 +153,7 @@ export class TestComponent implements OnInit {
     return null;
   }
 
-  private toBase64 = (file) => new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = () => resolve(reader.result);
-    reader.onerror = (error) => reject(error); 
-  });
+  openResult() {
+    window.open(`file:\\\\\\%HOME%\\.artillery\\${this.reportFilename}.html`);
+  }
 }

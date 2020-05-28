@@ -1,10 +1,11 @@
-import { ɵCodegenComponentFactoryResolver } from '@angular/core';
 import { ResponseTime } from './response-time.model';
 import { Code } from './code.model';
 
+// See artillery-output-example.txt to fully understand.
+
 export class UserReport {
     public executedAt: Date;
-    public UTC: string;
+    public UTC: number;
     public elapsedTimeHMS: string;
 
     public scenariosLaunched: number;
@@ -28,12 +29,16 @@ export class UserReport {
         return new Date(`${hour} ${day}`);
     }
 
+    private getUTC(userReport: string): number {
+        const firstLine = userReport.split('\n')[0];
+        const utcValue = parseInt(firstLine.split('(').pop().split(')')[0]);
+        return utcValue.toString().length > 3 ? utcValue/100 : utcValue;
+    }
+
     private getElapsedTime(userReport: string): string {
-        throw new Error("Method not implemented.");
+        const secondLine = userReport.split('\n')[1];
+        return secondLine.split('Elapsed time:')[1];
     }
     
-    private getUTC(userReport: string): string {
-        throw new Error("Method not implemented.");
-    }
     
 }

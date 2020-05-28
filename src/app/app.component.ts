@@ -14,8 +14,21 @@ export class AppComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    // this.childProcessService.childProcess.exec('ls', [], (err, data) => {
-    //   console.log(data, err);
-    // });
+    this.childProcessService.childProcess.exec(`if not exist %HOME%\\.artillery\\* (mkdir %HOME%\\.artillery)`, [], (err, data) => {
+      if (err) {
+        console.log(err);
+        return;
+      }
+      this.deleteAllFilesInFolder();
+    });
+  }
+
+  private deleteAllFilesInFolder() {
+    this.childProcessService.childProcess.exec(`del /S %HOME%\\.artillery\\*`, [], (err, data) => {
+      if (err) {
+        console.log(err);
+        return;
+      }
+    });
   }
 }
