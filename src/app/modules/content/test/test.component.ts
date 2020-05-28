@@ -114,14 +114,18 @@ export class TestComponent implements OnInit {
           return;
         }
         console.log('Fim: ', new Date())
-        console.log(data)
+        console.log(data);
+        
+        let finished = false;
 
+        while(!finished) { if (data) finished = true;}
         this.createHTMLReport();
       });
   }
 
   private createHTMLReport() {
-    this.childProcessService.childProcess.exec(`artillery report %HOME%\\.artillery\\${this.reportFilename}.json`, [],
+    this.childProcessService.childProcess.exec(`if not exist (echo Arquivo não foi criado)
+        else (artillery report %HOME%\\.artillery\\${this.reportFilename}.json)`, [],
       (err, data) => {
           if (err) {
             console.log(err);

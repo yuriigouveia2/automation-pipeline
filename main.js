@@ -22,6 +22,7 @@ function createWindow() {
 
   win.maximize();
   win.loadURL(`file://${__dirname}/dist/automation-pipeline/index.html`);
+  win.removeMenu();
   // Descomente a linha abaixo para abrir o DevTools
   // win.webContents.openDevTools();
 
