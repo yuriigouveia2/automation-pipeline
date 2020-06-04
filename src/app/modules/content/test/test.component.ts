@@ -5,6 +5,7 @@ import { Component, OnInit, ChangeDetectorRef, AfterContentInit } from '@angular
 import { MatHorizontalStepper } from '@angular/material/stepper';
 import { GraphicConfig } from 'src/app/core/models/graphic/graphic-config.model';
 import { ChildProcessService } from 'ngx-childprocess';
+import * as Path from 'path';
 
 @Component({
   selector: 'app-test',
@@ -94,7 +95,7 @@ export class TestComponent implements OnInit {
 
   private runArtilleryLoadTest() {
     const configFileToExecute = `.\\${this.fileForm.controls.file.value.replace('/', '\\')}`;
-    this.childProcessService.childProcess.exec(`artillery run ${configFileToExecute}`, [],
+    this.childProcessService.childProcess.exec(`artillery run ${Path.normalize(configFileToExecute)}`, [],
       (err, data) => {
         if (err) {
           console.log(err);
