@@ -1,10 +1,11 @@
 import { ColorScheme } from './../../../core/models/graphic/color-scheme.model';
 import { ChartTypeEnum } from './../../../core/enums/chart-type.enum';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Component, OnInit, ChangeDetectorRef, AfterContentInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatHorizontalStepper } from '@angular/material/stepper';
 import { GraphicConfig } from 'src/app/core/models/graphic/graphic-config.model';
 import { ChildProcessService } from 'ngx-childprocess';
+import { Util } from 'src/app/shared/util/util';
 import * as Path from 'path';
 
 @Component({
@@ -16,9 +17,13 @@ export class TestComponent implements OnInit {
 
   testForm: FormGroup;
   fileLabelText: string;
+  filepath: string;
   formMessages: any;
   chartEnum: any;
   graphicConfig: GraphicConfig;
+  loading = false;
+  resultCompleted = false;
+  reportFilename = '';
 
   constructor(
     private FB: FormBuilder,
@@ -87,21 +92,45 @@ export class TestComponent implements OnInit {
   onChange = (stepperComponent: MatHorizontalStepper) => stepperComponent.next();
 
   showFileName = (event: any, stepperComponent: MatHorizontalStepper) => {
+    this.filepath = Path.normalize((document.getElementById('myFile') as any).files[0].path);
     this.fileLabelText = event.target.files[0].name;
+
     if (!this.isValid()) { return; }
+
     this.runArtilleryLoadTest();
     stepperComponent.next();
   }
 
   private runArtilleryLoadTest() {
-    const configFileToExecute = `.\\${this.fileForm.controls.file.value.replace('/', '\\')}`;
-    this.childProcessService.childProcess.exec(`artillery run ${Path.normalize(configFileToExecute)}`, [],
-      (err, data) => {
+    console.log('Início: ', new Date());
+    const dateToJsonName = new Date().toISOString().split('T')[0];
+    this.reportFilename = `report-${dateToJsonName}`;
+    const commandToExecute = `artillery run -o %HOME%\\.artillery\\${this.reportFilename}.json ${this.filepath}`;
+
+    this.loading = true;
+    this.childProcessService.childProcess.exec(commandToExecute, [],
+    (err, data) => {
         if (err) {
           console.log(err);
           return;
         }
+        console.log('Fim: ', new Date());
+        console.log(data);
+
+        this.createHTMLReport();
       });
+  }
+
+  private createHTMLReport() {
+    this.childProcessService.childProcess.exec(`artillery report %HOME%\\.artillery\\${this.reportFilename}.json`, [],
+      (err, data) => {
+          if (err) {
+            console.log(err);
+            return;
+          }
+          this.loading = false;
+          this.resultCompleted = true;
+        });
   }
 
   isValid() {
@@ -123,5 +152,9 @@ export class TestComponent implements OnInit {
                   .map(key => this.formMessages[formField][key])[0];
     }
     return null;
+  }
+
+  openResult() {
+    window.open(`file:\\\\\\%HOME%\\.artillery\\${this.reportFilename}.html`);
   }
 }
